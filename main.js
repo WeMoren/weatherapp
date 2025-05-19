@@ -6,6 +6,25 @@ const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 const body = document.getElementsByClassName("body");
 
+// Logic to update current time and date according to city;
+let timezoneOffset = 0;
+const updateDateAndTime = (timezoneOffset) => {
+    const now = new Date();
+
+    const localTime = new Date(now.getTime() + timezoneOffset * 1000);
+    document.getElementById("date-time").innerHTML = localTime.toLocaleString('en-GB', {
+        weekday: 'long',
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true                            
+
+        });
+}
+setInterval(timezoneOffset, 1000);
 // Logic to dynamically update background image;
 const updateBackgroundImage = (city) => {
     const cityImages = {
@@ -27,6 +46,8 @@ async function checkWeather(city){
     let data = await response.json();
 
     console.log(data);
+
+    const timezoneOffset = data.timezone;
 
     document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
     document.querySelector(".city").innerHTML = data.name;
@@ -57,6 +78,7 @@ async function checkWeather(city){
     }, 300)
 
     updateBackgroundImage(data.name);
+    updateDateAndTime(timezoneOffset);
 
     // Error Handling;
 }catch(error){
