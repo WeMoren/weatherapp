@@ -5,7 +5,17 @@ const searchInput = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 const body = document.getElementsByClassName("body");
+const darkMode = document.querySelector(".dark-mode");
 
+
+// Dark mode and light mode integration
+const darkModeSwitch = document.getElementById("dark-mode-btn");
+darkModeSwitch.onclick = () => {
+    document.body[0].toggle("dark-mode");
+    document.body[0].style.color = "#fff";
+}   
+   
+    
 // Logic to update current time and date according to city;
 let timezoneOffset = 0;
 const updateDateAndTime = (timezoneOffset) => {
@@ -25,6 +35,8 @@ const updateDateAndTime = (timezoneOffset) => {
         });
 }
 setInterval(timezoneOffset, 1000);
+
+
 // Logic to dynamically update background image;
 const updateBackgroundImage = (city) => {
     const cityImages = {
@@ -72,10 +84,10 @@ async function checkWeather(city){
 
     // animation added to have a modern looking UI;
 
-    document.querySelector(".temp").style.transform = "scale(1.1)";
+    document.querySelector(".temp").style.transform = "scale(1.3)";
     setTimeout(() =>{
         document.querySelector(".temp").style.transform = "scale(1)"
-    }, 300)
+    }, 800)
 
     updateBackgroundImage(data.name);
     updateDateAndTime(timezoneOffset);
@@ -92,8 +104,10 @@ async function checkWeather(city){
     }
 
 }
+
 searchBtn.addEventListener("click", () =>{
     checkWeather(searchInput.value)
+    
 })
 
 checkWeather("Finland");
