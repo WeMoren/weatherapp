@@ -11,8 +11,8 @@ const darkMode = document.querySelector(".dark-mode");
 // Dark mode and light mode integration
 const darkModeSwitch = document.getElementById("dark-mode-btn");
 darkModeSwitch.onclick = () => {
-    document.body[0].toggle("dark-mode");
-    document.body[0].style.color = "#fff";
+    document.body.style.backgroundColor = "#121212";
+    document.body.style.color = "#fff";
 }   
    
     
