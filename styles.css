@@ -6,11 +6,11 @@
 }
 
 body{
-    background-image: url(./bg-finland.jpg);
+    background-image: url(./bg-finland.jpg) !important;
     background-position: center !important;
     background-repeat:no-repeat !important;
     background-size:cover !important;
-    height: 100vh !important;
+    min-height: 100vh !important;
     
     /* display: flex; */
 }
@@ -26,8 +26,8 @@ body{
 }
 
 .dark{
-    background-color: #121212;
-    color: #ffffff;
+    
+    color: #fff;
     
 }
 

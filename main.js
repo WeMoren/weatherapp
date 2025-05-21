@@ -9,12 +9,7 @@ const darkMode = document.querySelector(".dark-mode");
 
 
 // Dark mode and light mode integration
-const darkModeSwitch = document.getElementById("dark-mode-btn");
-darkModeSwitch.onclick = () => {
-    document.body.style.backgroundColor = "#121212";
-    document.body.style.color = "#fff";
-}   
-   
+
     
 // Logic to update current time and date according to city;
 let timezoneOffset = 0;
@@ -112,7 +107,11 @@ searchBtn.addEventListener("click", () =>{
 
 checkWeather("Finland");
 
-
+const darkModeSwitch = document.getElementById("dark-mode-btn");
+darkModeSwitch.onclick = () => {
+    document.body.classList.toggle("dark");
+    document.body.style.color = "#fff";
+}   
 
 
 
