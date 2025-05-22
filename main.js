@@ -5,6 +5,7 @@ const searchInput = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 const darkModeBtn = document.getElementById("dark-mode-btn");
+const searchIcon = document.querySelector(".fa-search");
 
 
 // Dark mode and light mode integration
@@ -13,12 +14,12 @@ const darkModeBtn = document.getElementById("dark-mode-btn");
 // Logic to update current time and date according to city;
 let timeInterval;
 let timezoneOffset = 0;
+const nowDevice = new Date();
 const updateDateAndTime = (timezoneOffset) => {
     const nowUTC = new Date().getTime();
 
     const localTime = new Date(nowUTC + (timezoneOffset * 1000));
-    console.log("Timezone Offset:", timezoneOffset);
-    console.log("Local Time:", localTime.toLocaleString());
+
 
     document.getElementById("date-time").innerHTML = localTime.toLocaleString('en-GB', {
         weekday: 'long',
@@ -115,13 +116,17 @@ searchBtn.addEventListener("click", () =>{
 checkWeather("Finland");
 
 
-darkModeBtn.onclick = () => {
+darkModeBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
-}   
+    const isModeSwitched = document.body.classList.contains("dark");
 
-
-
-
+if(isModeSwitched){
+    darkModeBtn.innerHTML = "Light mode";
+}else{
+    darkModeBtn.innerHTML = "Dark mode"
+}
+})
+    
 
 
 
