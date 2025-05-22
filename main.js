@@ -118,9 +118,9 @@ checkWeather("Finland");
 
 darkModeBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
-    const isModeSwitched = document.body.classList.contains("dark");
+    const isDarkModeActive = document.body.classList.contains("dark");
 
-if(isModeSwitched){
+if(isDarkModeActive){
     darkModeBtn.innerHTML = "Light mode";
 }else{
     darkModeBtn.innerHTML = "Dark mode"
