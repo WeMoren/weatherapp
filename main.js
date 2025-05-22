@@ -4,19 +4,22 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
 const searchInput = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
-const body = document.getElementsByClassName("body");
-const darkMode = document.querySelector(".dark-mode");
+const darkModeBtn = document.getElementById("dark-mode-btn");
 
 
 // Dark mode and light mode integration
 
     
 // Logic to update current time and date according to city;
+let timeInterval;
 let timezoneOffset = 0;
 const updateDateAndTime = (timezoneOffset) => {
-    const now = new Date();
+    const nowUTC = new Date().getTime();
 
-    const localTime = new Date(now.getTime() + timezoneOffset * 1000);
+    const localTime = new Date(nowUTC + (timezoneOffset * 1000));
+    console.log("Timezone Offset:", timezoneOffset);
+    console.log("Local Time:", localTime.toLocaleString());
+
     document.getElementById("date-time").innerHTML = localTime.toLocaleString('en-GB', {
         weekday: 'long',
         year: 'numeric', 
@@ -29,7 +32,7 @@ const updateDateAndTime = (timezoneOffset) => {
 
         });
 }
-setInterval(timezoneOffset, 1000);
+
 
 
 // Logic to dynamically update background image;
@@ -53,8 +56,12 @@ async function checkWeather(city){
     let data = await response.json();
 
     console.log(data);
-
-    const timezoneOffset = data.timezone;
+    
+     timezoneOffset = data.timezone;
+    
+    clearInterval(timeInterval)
+    timeInterval = setInterval(() => updateDateAndTime(timezoneOffset), 1000 ); 
+    updateDateAndTime(timezoneOffset);    
 
     document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
     document.querySelector(".city").innerHTML = data.name;
@@ -107,10 +114,9 @@ searchBtn.addEventListener("click", () =>{
 
 checkWeather("Finland");
 
-const darkModeSwitch = document.getElementById("dark-mode-btn");
-darkModeSwitch.onclick = () => {
+
+darkModeBtn.onclick = () => {
     document.body.classList.toggle("dark");
-    document.body.style.color = "#fff";
 }   
 
 

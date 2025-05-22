@@ -6,7 +6,7 @@
 }
 
 html, body{
-    background-image: url(./bg-finland.jpg) !important;
+    /* background-image: url(./bg-finland.jpg); */
     background-position: center !important;
     background-repeat:no-repeat !important;
     background-size:cover !important;
@@ -20,7 +20,7 @@ html, body{
 
 #dark-mode-btn{
     background-color: rgba(5, 145, 200, 0.231);
-    color: #ffffff;
+    color: #fff;
     cursor: pointer;
     border: none;
     border-radius: 50px;
@@ -29,10 +29,32 @@ html, body{
 }
 
 .dark{
-    
-    color: #fff;
+    background-color:#121212;
+    color: #7d7979;
+    transition: background-color 0.5s ease, color 0.5s ease;
     
 }
+
+.dark .search.fa-search{
+    color:#7d7979;
+}
+
+.dark::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: -1; 
+}
+
+.dark #dark-mode-btn {
+    background-color: rgba(255, 255, 255, 0.3); /* Light color for contrast */
+    color: #fff;
+}
+
 
 .card{
     width: 100%;
@@ -44,6 +66,10 @@ html, body{
     border:none !important;
     padding: 20px 15px;
     text-align: center;
+}
+
+.dark .card{
+    color:rgb(214, 211, 211);
 }
 
 .search{
