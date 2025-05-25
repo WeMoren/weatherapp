@@ -7,9 +7,6 @@ const weatherIcon = document.querySelector(".weather-icon");
 const darkModeBtn = document.getElementById("dark-mode-btn");
 const searchIcon = document.querySelector(".fa-search");
 
-
-// Dark mode and light mode integration
-
     
 // Logic to update current time and date according to city;
 let timeInterval;
@@ -56,7 +53,7 @@ async function checkWeather(city){
     const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
     let data = await response.json();
 
-    console.log(data);
+    
     
      timezoneOffset = data.timezone;
     
@@ -115,7 +112,7 @@ searchBtn.addEventListener("click", () =>{
 
 checkWeather("Finland");
 
-
+// Dark mode and light mode integration;
 darkModeBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
     const isDarkModeActive = document.body.classList.contains("dark");
@@ -125,7 +122,7 @@ if(isDarkModeActive){
 }else{
     darkModeBtn.innerHTML = "Dark mode"
 }
-})
+});
     
 
 
