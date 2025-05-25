@@ -18,7 +18,7 @@ const updateDateAndTime = (timezoneOffset) => {
     const localTime = new Date(nowUTC + (timezoneOffset * 1000));
 
 
-    document.getElementById("date-time").innerHTML = localTime.toLocaleString('en-GB', {
+    document.getElementById("date-time").innerHTML = localTime.toLocaleString('en-US', {
         weekday: 'long',
         year: 'numeric', 
         month: 'long', 
